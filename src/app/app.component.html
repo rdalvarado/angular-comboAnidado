@@ -1,0 +1,30 @@
+<hello name="{{ name }}"></hello>
+
+<table>
+  <tr *ngFor="let number of numbers">
+    <td>
+      <label>Country:</label>
+      <select [(ngModel)]="selectedCountry[number]" 
+        (change)="onSelect($event.target, number, selectedCountry)">
+
+        <option value="0">--Select--</option>
+        <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
+      </select>
+    </td>
+    <td>
+      <div>
+        <label>State:</label>
+        <ng-container *ngIf='states'>
+          <select>
+            <option value="0">--Select--</option>
+            <option *ngFor="let state of states[number]" value={{state.id}}>{{state.name}}</option>
+          </select>
+        </ng-container>
+
+      </div>
+    </td>
+    <td>{{number}}</td>
+    <td>{{selectedCountry[number]}}</td>
+  </tr>
+</table>
+
