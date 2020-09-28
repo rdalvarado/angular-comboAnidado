@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Country } from './country';
 import { State } from './state';
+import { User } from './user';
 
 
 @Injectable()
 export class DataService {
   getCountries() {
     return [
-     new Country(1, 'USA' ),
-     new Country(2, 'India' ),
-     new Country(3, 'Australia' )
+     new Country(1, 'USA', null ),
+     new Country(2, 'India', null ),
+     new Country(3, 'Australia', null )
     ];
   }
   
@@ -25,6 +26,15 @@ export class DataService {
      new State(8, 3, 'Queensland' ),
      new State(9, 3, 'South Australia' ),
      new State(10, 3, 'Tasmania')
+    ];
+  }
+
+  getUsers(){
+    return [
+      new User(1, 'Ruben', null, null, null),
+      new User(2, 'Jesus', null, null, null),
+      new User(3, 'Rudy', null, null, null),
+      new User(4, 'Saida', null, null, null),
     ];
   }
 }

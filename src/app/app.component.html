@@ -1,30 +1,28 @@
 <hello name="{{ name }}"></hello>
 
 <table>
-  <tr *ngFor="let number of numbers">
+  <tr *ngFor="let usuario of users">
     <td>
       <label>Country:</label>
-      <select [(ngModel)]="selectedCountry[number]" 
-        (change)="onSelect($event.target, number, selectedCountry)">
+      <ng-container *ngIf='checkIf1(countries, users[usuario.id-1].country,usuario.id-1 )'>
+        <select [(ngModel)]="users[usuario.id-1].country"
+          (change)="onSelect(users[usuario.id-1].country, usuario.id - 1, selectedCountry)">
+          <option [ngValue]="null">--Select--</option>
+          <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+        </select>
+      </ng-container>
 
-        <option value="0">--Select--</option>
-        <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
-      </select>
     </td>
     <td>
       <div>
         <label>State:</label>
-        <ng-container *ngIf='states'>
-          <select>
-            <option value="0">--Select--</option>
-            <option *ngFor="let state of states[number]" value={{state.id}}>{{state.name}}</option>
+          <select [(ngModel)]="users[usuario.id-1].state">
+            <option [ngValue]="null">--Select--</option>
+            <option *ngFor="let estado of states[usuario.id - 1]" [ngValue]="estado">{{estado.name}}</option>
           </select>
-        </ng-container>
-
       </div>
     </td>
-    <td>{{number}}</td>
-    <td>{{selectedCountry[number]}}</td>
+    <td>{{usuario.id - 1}}</td>
   </tr>
 </table>
 
